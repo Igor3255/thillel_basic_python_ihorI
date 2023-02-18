@@ -1,5 +1,5 @@
 def horse_move(start, end):
-    return abs(abs(ord(start[0]) - ord(end[0])) - abs(int(start[1]) - int(end[1]))) == 1
+    return abs((ord(start[0]) - ord(end[0])) * (int(start[1]) - int(end[1]))) == 2
 
 
 def main():
