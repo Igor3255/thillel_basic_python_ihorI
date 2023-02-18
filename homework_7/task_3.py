@@ -1,18 +1,15 @@
+import math
+
 def calculate_wheat_chess_position(kilograms):
     weight_summ = 0.000035
+    cell = int(math.log2(kilograms/weight_summ)) + 1
     chessboard_letters = 'abcdefgh'
-    cell = 0
-    for i in range(1, 65):
-        weight_summ = weight_summ * 2
-        if weight_summ > kilograms:
-            cell = i
-            break
     return chessboard_letters[cell//8], cell % 8
 
 
 def main():
-    n = float(input('Введите: '))
-    print(calculate_wheat_chess_position(n), sep='')
+    n = float(input('Введіть: '))
+    print(calculate_wheat_chess_position(n))
 
 
 if __name__ == '__main__':
