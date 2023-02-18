@@ -1,15 +1,13 @@
 def fibonacci_numbers(idx_fib):
-    first_digit = 1
-    second_digit = 0
-    fib = 0
+    first_digit, second_digit = 1, 0
     for i in range(idx_fib):
-        fib = first_digit + second_digit
-        second_digit, first_digit = second_digit + first_digit, second_digit
-    return fib
+        first_digit, second_digit = second_digit, first_digit + second_digit
+    return second_digit
 
 
 def main():
-    print(fibonacci_numbers(int(input('Введіть індекс '))))
+    idx_fib = int(input('Введіть індекс '))
+    print(fibonacci_numbers(idx_fib))
 
 
 if __name__ == '__main__':
