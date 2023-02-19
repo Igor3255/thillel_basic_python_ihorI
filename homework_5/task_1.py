@@ -1,7 +1,9 @@
 import math
 
+
 def degrees2radians(degrees):
     return degrees * 3.14159265359 / 180
+
 
 cos60 = math.cos(degrees2radians(60))
 cos45 = math.cos(degrees2radians(45))
