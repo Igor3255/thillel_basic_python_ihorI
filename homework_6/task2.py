@@ -1,31 +1,25 @@
 def solve_quadratic_equation(a, b, c):
-    discriminant = b**2 - 4 * a * c
-    x1, x2 = None, None
-    if discriminant == 0:
-        x1 = (-b + discriminant**0.5) / 2*a
-        x2 = None
-    elif discriminant > 0:
-        x1 = (-b + discriminant**0.5) / 2*a
-        x2 = (-b - discriminant**0.5) / 2*a
-    return x1, x2
+    d = b**2 - 4*a*c
+    if d > 0:
+        x1 = (-b + d**0.5) / (2*a)
+        x2 = (-b - d**0.5) / (2*a)
+        return x1, x2
+    elif d == 0:
+        x = -b / (2*a)
+        return x, None
+    else:
+        return None, None
 
+a = float(input("Enter coefficient a: "))
+b = float(input("Enter coefficient b: "))
+c = float(input("Enter coefficient c: "))
 
-def main():
-    a = int(input('Input a '))
-    b = int(input('Input b '))
-    c = int(input('Input c '))
-    x1, x2 = solve_quadratic_equation(a, b, c)
-    if x1 is None:
-        if x2 is None:
-            print('no roots')
-        else:
-            print(f'x = {x2}')
-    elif x1 is not None:
-        if x2 is None:
-            print(f'x = {x1}')
-        else:
-            print(f'x1 = {x1}, x2 = {x2}')
+x1, x2 = solve_quadratic_equation(a, b, c)
 
-
-if __name__ == '__main__':
-    main()
+if x1 is not None and x2 is not None:
+    print("x1 =", x1)
+    print("x2 =", x2)
+elif x1 is not None:
+    print("x =", x1)
+else:
+    print("No solutions")
