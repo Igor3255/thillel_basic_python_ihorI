@@ -10,6 +10,7 @@ def solve_quadratic_equation(a, b, c):
     else:
         return None, None
 
+    
 a = float(input("Enter coefficient a: "))
 b = float(input("Enter coefficient b: "))
 c = float(input("Enter coefficient c: "))
