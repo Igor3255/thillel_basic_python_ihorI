@@ -1,5 +1,5 @@
 def is_even(number):
-    if number % 2 == 0:
-        return True
-    else:
-        return False
+    return number % 2 == 0
+
+print(is_even(4))  # True
+print(is_even(5))  # False
