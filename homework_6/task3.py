@@ -1,17 +1,28 @@
+import cmath
+
 def solve_quadratic_equation(a, b, c):
-    discriminant = b**2 - 4*a*c
-    z1 = (-b + discriminant**0.5) / 2
-    z2 = (-b - discriminant**0.5) / 2
-    return z1, z2
+    # розрахунок дискримінанту
+    d = b**2 - 4*a*c
+    
+    # розрахунок коренів рівняння
+    if d >= 0:
+        x1 = (-b + cmath.sqrt(d)) / (2*a)
+        x2 = (-b - cmath.sqrt(d)) / (2*a)
+    else:
+        x1 = (-b + cmath.sqrt(d)) / (2*a)
+        x2 = (-b - cmath.sqrt(d)) / (2*a)
+    
+    return x1, x2
 
 
-def main():
-    a = int(input('Input a '))
-    b = int(input('Input b '))
-    c = int(input('Input c '))
-    z1, z2 = solve_quadratic_equation(a, b, c)
-    print(f'z1 = {z1}, z2 = {z2}')
+a = float(input("Введіть коефіцієнт a: "))
+b = float(input("Введіть коефіцієнт b: "))
+c = float(input("Введіть коефіцієнт c: "))
 
 
-if __name__ == '__main__':
-    main()
+x1, x2 = solve_quadratic_equation(a, b, c)
+if x1 == x2:
+    print("x =", x1)
+else:
+    print("x1 =", x1)
+    print("x2 =", x2)
