@@ -1,25 +1,26 @@
-def solve_quadratic_equation(a, b, c):
-    d = b**2 - 4*a*c
-    if d > 0:
-        x1 = (-b + d**0.5) / (2*a)
-        x2 = (-b - d**0.5) / (2*a)
-        return x1, x2
-    elif d == 0:
-        x = -b / (2*a)
-        return x, None
-    else:
-        return None, None
+import cmath
 
-a = float(input("Enter coefficient a: "))
-b = float(input("Enter coefficient b: "))
-c = float(input("Enter coefficient c: "))
+def solve_quadratic_equation(a, b, c):
+    # розрахунок дискримінанту
+    d = b**2 - 4*a*c
+    
+    # розрахунок коренів рівняння
+    if d >= 0:
+        x1 = (-b + cmath.sqrt(d)) / (2*a)
+        x2 = (-b - cmath.sqrt(d)) / (2*a)
+    else:
+        x1 = (-b + cmath.sqrt(d)) / (2*a)
+        x2 = (-b - cmath.sqrt(d)) / (2*a)
+    
+    return x1, x2
+
+a = float(input("Введіть коефіцієнт a: "))
+b = float(input("Введіть коефіцієнт b: "))
+c = float(input("Введіть коефіцієнт c: "))
 
 x1, x2 = solve_quadratic_equation(a, b, c)
-
-if x1 is not None and x2 is not None:
-    print("x1 =", x1)
-    print("x2 =", x2)
-elif x1 is not None:
+if x1 == x2:
     print("x =", x1)
 else:
-    print("No solutions")
+    print("x1 =", x1)
+    print("x2 =", x2)
