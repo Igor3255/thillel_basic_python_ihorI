@@ -1,10 +1,9 @@
-def sort_by_number(lst):
-    def get_number(elem):
-        return int(elem) if isinstance(elem, str) and elem.isdigit() else 0
+def custom_sort(elem):
+    if isinstance(elem, str):
+        return int(elem)
+    else:
+        return elem
 
-    return sorted(lst, key=get_number)
-
-
-lst = ["5", "2", "8", "1", "9", "3", "6", "7", "4"]
-lst_sorted = sort_by_number(lst)
-print(lst_sorted)  # виведе ["1", "2", "3", "4", 5, "6", "7", "8", "9"]
+lst = ["5", "2", "8", "1", "9", "3", "6", "7", "4", "3.14", "2.71"]
+lst_sorted = sorted(lst, key=custom_sort)
+print(lst_sorted)  # выведет ["1", "2", "3", "4", "2.71", "3.14", "5", "6", "7", "8", "9"]
