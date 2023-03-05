@@ -1,63 +1,68 @@
-import random
+from random import randint
+
 
 def get_integer(prompt):
     while True:
         try:
-            num = int(input(prompt))
-            return num
+            value = int(input(prompt))
         except ValueError:
-            print("Будь ласка, введіть ціле число")
-
-def get_str(prompt):
-    while True:
-        text = input(prompt).strip()
-        if text:
-            return text
-
-def guess_number_game():
-    secret_number = random.randint(1, 100)
-    print("Загадано число від 1 до 100. Спробуйте відгадати!")
-    while True:
-        guess = get_integer("Введіть число: ")
-        if guess == secret_number:
-            print("Ви виграли!")
-            break
-        elif guess < secret_number:
-            print("Загадане число більше.")
+            print("Please enter a valid integer.\n")
         else:
-            print("Загадане число менше.")
+            return value
 
-def guess_my_number_game():
-    print("Загадайте число від 1 до 100, а я спробую відгадати!")
-    min_number = 1
-    max_number = 100
+
+def get_str(prompt, valid_options):
     while True:
-        guess = random.randint(min_number, max_number)
-        print("Чи загадане число: ", guess)
-        user_feedback = get_str("Чи відгадав я правильно? Введіть 'більше', 'менше', або 'вірно': ")
-        if user_feedback == 'вірно':
-            print("Я виграв!")
-            break
-        elif user_feedback == 'більше':
-            min_number = guess + 1
-        elif user_feedback == 'менше':
-            max_number = guess - 1
+        value = input(prompt).lower()
+        if value in valid_options:
+            return value
+        print("Please enter a valid option.\n")
+
+
+def guess_number():
+    number = randint(1, 100)
+    while True:
+        guess = get_integer("\nI picked a number from 1 to 100. Try to guess it: ")
+        if guess > number:
+            print("Oops... My number is less than yours.")
+        elif guess < number:
+            print("Oh no... My number is bigger than yours.")
+        else:
+            print(f"\nYippee! You guessed! My number is {number}!")
+            return
+
+
+def computer_guess():
+    lower_bound = 1
+    upper_bound = 100
+    guess = (lower_bound + upper_bound) // 2
+    while True:
+        print(f"\nMy number is {guess}")
+        feedback = get_str("Is my number correct, less, or bigger? Enter C, L, or B: ", ["c", "l", "b"])
+        if feedback == "c":
+            print(f"\nYippee! I guessed! Your number is {guess}!")
+            return
+        elif feedback == "l":
+            lower_bound = guess + 1
+        else:
+            upper_bound = guess - 1
+        guess = (lower_bound + upper_bound) // 2
+
 
 def main():
     while True:
-        print("Виберіть гру:")
-        print("1. Вгадайте число.")
-        print("2. Я відгадаю ваше число.")
-        game_choice = get_integer("Ваш вибір: ")
-        if game_choice == 1:
-            guess_number_game()
-        elif game_choice == 2:
-            guess_my_number_game()
+        print("\nChoose a game:")
+        game = get_str("Enter 'G' to guess my number, or 'C' to have the computer guess your number: ", ["g", "c"])
+        if game == "g":
+            guess_number()
         else:
-            print("Невірний вибір. Спробуйте ще раз.")
-        play_again = get_str("Хочете зіграти ще раз? (Так/Ні) ").lower()
-        if play_again != 'так':
+            computer_guess()
+        repeat = get_str("\nDo you want to play again? Enter YES or NO: ", ["yes", "no"])
+        if repeat == "no":
             break
+    print("Thanks for playing!")
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main()
+    
