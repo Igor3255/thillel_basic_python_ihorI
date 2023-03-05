@@ -1,44 +1,38 @@
-import random
+from random import sample
 
 
-def pemrtuate(text):  # returns permuted text
-    lst_text = text.split()
-    result = list()
-    for word in lst_text:
-        mix_word = list()
-        new_word = list()
-        if len(word) > 4:
-            new_word.append(*word[0])
-            word = word[1:]
-            end_letter = word[-1]
-            word = word[:-1]
-            while True:
-                if len(word) > 2:
-                    three_ch = [word[0], word[1], word[2]]
-                    mix_word = list(word)
-                    mix_three_ch = three_ch.copy()
-                    while mix_three_ch == three_ch:
-                        random.shuffle(mix_three_ch)
-                    new_word.append(''.join(mix_three_ch))
-                    word = word[3:]
+def pemrtuate(text):
+    words = text.split()
+    
+    for i in range(len(words)):
+        if len(words[i]) > 3:
+            first, *middle, last = words[i]
+            new_middle = []
+            
+            for j in range(0, len(middle), 3):
+            
+                if j + 3 <= len(middle):
+                    original_triple = middle[j:j + 3]
+                    permuted_triple = sample(original_triple, 3)
+                    while permuted_triple == original_triple:
+                        permuted_triple = sample(original_triple, 3)
+                    new_middle += permuted_triple
+                    
                 else:
-                    new_word.append(''.join(word))
-                    break
-            new_word.append(''.join(end_letter))
-            result.append(''.join(new_word))
-        else:
-            result.append(word)
-
-    return result
+                    new_middle += middle[j:]
+                    
+            permuted_word = "".join([first] + new_middle + [last])
+            words[i] = permuted_word
+            
+    return " ".join(words)
 
 
 def main():
-    my_text = 'За результатами дослідження одного англійського університету, не має значення,' \
-              ' в якому порядку розташовані букви в слові. Головне, щоб перша і остання букви були на місці. ' \
-              'Решта букв можуть слідкувати в повному безладі, все одно текст читається без проблем. ' \
-              'Причиною цього є те, що ми не читаємо кожну букву окркмо, а все слово цілком.'
-    print(*pemrtuate(my_text), sep=' ')
+    text = "Не має значення в якому порядку розташовані букви в слові"
+    reordered_text = pemrtuate(text)
+    print(reordered_text)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
+    
