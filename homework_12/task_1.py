@@ -138,18 +138,19 @@ def update_contact_ages():
 
 
 @print_start_end_process(print_start_end_process_off)
-def calculate_average_age_of_all_persons_in_phonebook():
-    try:
-        age_of_all_persons_in_phonebook = \
-            [entry["age"] for entry in phone_book]   # get a list of all ages in the phonebook
-        average_age_of_all_persons = \
-            sum(age_of_all_persons_in_phonebook) / len(age_of_all_persons_in_phonebook)
-
-        print("Average age of all persons:\n"
-              f"~ {average_age_of_all_persons:.2f} years ~")
-
-    except ZeroDivisionError:  # handle the case where the phonebook is empty
-        print_error("Division by zero. The phone book is empty.")
+def calculate_average_age_of_all_persons_in_phonebook(phonebook):
+    if not phonebook:
+        return None
+    total_age = 0
+    num_people = 0
+    for person in phonebook:
+        if 'age' in person:
+            total_age += person['age']
+            num_people += 1
+    if num_people == 0:
+        return None
+    average_age = total_age / num_people
+    return average_age
 
 
 @print_start_end_process(print_start_end_process_off)
