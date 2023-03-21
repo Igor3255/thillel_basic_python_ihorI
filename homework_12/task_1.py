@@ -49,7 +49,7 @@ def add_new_entry_to_phonebook():
                     "phone_number": phone_number, "email": email}
     phone_book.append(entry)
     global changes_made_to_phonebook
-    changes_made_to_phonebook = True # indicates that there were changes in the phone book
+    changes_made_to_phonebook = True  # indicates that there were changes in the phone book
 
 
 @print_start_end_process(print_start_end_process_off)
@@ -97,14 +97,14 @@ def find_email_by_name_in_phonebook():
 @print_start_end_process(print_start_end_process_off)
 def delete_entry_by_name_in_phonebook():
     name = get_input_str_from_user(prompt="    Enter name: ")
-    copy_of_phone_book = deepcopy(phone_book) # create a copy of the phonebook to be able to change it
+    copy_of_phone_book = deepcopy(phone_book)  # create a copy of the phonebook to be able to change it
     found = False
 
     for idx, entry in enumerate(copy_of_phone_book):
         if entry["name"] == name:
             phone_book.pop(idx)
             global changes_made_to_phonebook
-            changes_made_to_phonebook = True # indicates that there were changes in the phone book
+            changes_made_to_phonebook = True  # indicates that there were changes in the phone book
             found = True
 
     if not found:
@@ -120,7 +120,7 @@ def count_all_entries_in_phonebook():
 def print_phonebook_by_age():
     print("\n\n#########  Phone book by age  ##########\n")
 
-    phone_book_sorted_by_age = sorted(phone_book, key=lambda x: x["age"]) # sorted phone book by age
+    phone_book_sorted_by_age = sorted(phone_book, key=lambda x: x["age"])  # sorted phone book by age
 
     for idx, entry in enumerate(phone_book_sorted_by_age):
         print_entry(idx + 1, entry)
@@ -134,7 +134,7 @@ def update_contact_ages():
         phone_book[idx]["age"] += years_to_add  # add the age to the entry in the phone book
 
     global changes_made_to_phonebook
-    changes_made_to_phonebook = True # indicates that there were changes in the phone book
+    changes_made_to_phonebook = True  # indicates that there were changes in the phone book
 
 
 @print_start_end_process(print_start_end_process_off)
@@ -161,7 +161,7 @@ def save_phonebook_to_file():
         response = get_input_str_from_user(
             prompt="Save the data to the actual file or "
                    "create a new one? (actual/new): ",
-            options=["actual", "new"]) # ask the user whether to save to the current file or a new one
+            options=["actual", "new"])  # ask the user whether to save to the current file or a new one
 
         if response.lower() == "actual":
             save_phonebook_to_actual_file()
@@ -213,7 +213,7 @@ def exit_file():
     if changes_made_to_phonebook:
         save_changes_for_phonebook()
 
-    running = False   # set running to False, which will cause the main loop to exit
+    running = False  # set running to False, which will cause the main loop to exit
 
 
 def main():
