@@ -46,6 +46,9 @@ def computer_guess():
             lower_bound = guess + 1
         else:
             upper_bound = guess - 1
+        if lower_bound == upper_bound: # проверяем, сходились ли lower_bound и upper_bound
+            print(f"\nYippee! I guessed! Your number is {guess}!")
+            return
         guess = (lower_bound + upper_bound) // 2
 
 
@@ -65,4 +68,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-    
