@@ -40,12 +40,12 @@ def print_phonebook():
 @print_start_end_process(print_start_end_process_off)
 def add_new_entry_to_phonebook():
     global phone_book
-    surname      = get_input_str_from_user(prompt="    Enter surname: ")
-    name         = get_input_str_from_user(prompt="    Enter name: ")
-    age          = get_input_int_from_user(prompt="    Enter age: ")
+    surname = get_input_str_from_user(prompt="    Enter surname: ")
+    name = get_input_str_from_user(prompt="    Enter name: ")
+    age = get_input_int_from_user(prompt="    Enter age: ")
     phone_number = get_input_str_from_user(prompt="    Enter phone num.: ")
-    email        = get_input_str_from_user(prompt="    Enter email: ")
-    entry        = {"surname": surname, "name": name, "age": age,
+    email = get_input_str_from_user(prompt="    Enter email: ")
+    entry = {"surname": surname, "name": name, "age": age,
                     "phone_number": phone_number, "email": email}
     phone_book.append(entry)
     global changes_made_to_phonebook
@@ -232,7 +232,6 @@ def main():
                 "8": calculate_average_age_of_all_persons_in_phonebook,
                 "9": update_contact_ages,
                 "e": find_email_by_name_in_phonebook,
-
                 "0": exit,  # map '0' to exit_file() function
                 "s": save_phonebook_to_file,
                 "l": load_from_file,
