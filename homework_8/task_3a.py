@@ -1,9 +1,14 @@
-def custom_sort(elem):
-    if isinstance(elem, str):
-        return int(elem)
-    else:
-        return elem
+def sorted_list_number_value(original_list):
+    return sorted(original_list, key=float)
 
-lst = ["5", "2", "8", "1", "9", "3", "6", "7", "4", "3.14", "2.71"]
-lst_sorted = sorted(lst, key=custom_sort)
-print(lst_sorted)  # выведет ["1", "2", "3", "4", "2.71", "3.14", "5", "6", "7", "8", "9"]
+
+def main():
+    original_list = [5, '9', 0, '452', 6.5, '6', 1, 2]
+    sorted_copy_list = sorted_list_number_value(original_list)
+    
+    print("Original list:", original_list)
+    print("Sorted copy list:", sorted_copy_list)
+
+
+if __name__ == "__main__":
+    main()
