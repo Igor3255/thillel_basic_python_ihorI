@@ -1,7 +1,6 @@
 def pemrtuate(text):
     words = text.split()
     
-    
     for i in range(len(words)):
         if len(words[i]) > 3:
             first, *middle, last = words[i]
